@@ -3,6 +3,8 @@
    
     <h1>{{ msg }}</h1>
     <h2>{{ $t('welcome') }}</h2>
+    <img alt="Vue logo" src="./../assets/img/logo.png">
+    locale used {{ $i18n.locale }}
   
   </div>
 </template>

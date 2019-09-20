@@ -1,13 +1,16 @@
 <template>
     <header>   
     <b-navbar toggleable="lg" type="dark" variant="info">
-      <b-navbar-brand href="#">NavBar</b-navbar-brand>
+      <b-navbar-brand href="#"> 
+        <b-img src="../assets/img/logo.png" fluid alt="Responsive image">
+        </b-img>
+      </b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item href="#">Link</b-nav-item>
+          <b-nav-item to="/about">About</b-nav-item>
           <b-nav-item href="#" disabled>Disabled</b-nav-item>
         </b-navbar-nav>
 
@@ -19,7 +22,10 @@
           </b-nav-form>
 
           <b-nav-item-dropdown text="Lang" v-model="$i18n.locale" right>
-            <b-dropdown-item v-for="(lang, i) in languages" :key="`lang${i}`" :value="lang.code">{{ lang.title }}</b-dropdown-item>
+            <b-dropdown-item v-for="(lang, i) in languages" :key="`lang${i}`" 
+            :value="lang.code" 
+            v-bind:class="{'active':true,'active':(lang.code === $i18n.locale)}">
+            {{ lang.title }}</b-dropdown-item>
           </b-nav-item-dropdown>
 
           <b-nav-item-dropdown right>
@@ -44,7 +50,8 @@ export default {
         { flag: "us", code: "en", title: "English" },
         { flag: "es", code: "es", title: "Español" },
         { flag: "fr", code: "fr", title: "Français" },
-      ]
+      ],
+     // publicPath: process.env.BASE_URL
     };
   }, //data
     
