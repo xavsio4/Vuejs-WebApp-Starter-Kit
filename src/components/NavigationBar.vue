@@ -1,7 +1,7 @@
 <template>
     <header>   
     <b-navbar toggleable="lg" type="dark" variant="info">
-      <b-navbar-brand href="#"> 
+      <b-navbar-brand href="/"> 
         <b-img src="../assets/img/logo.png" fluid alt="Responsive image">
         </b-img>
       </b-navbar-brand>

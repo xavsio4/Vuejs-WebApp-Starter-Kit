@@ -11,6 +11,8 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import moment from 'vue-moment'
+import VuePageTransition from 'vue-page-transition'
+
 
 /*** 
 * Add here additional css/skins that you have to put in the assets folder
@@ -38,6 +40,7 @@ Vue.config.productionTip = false
 Vue.use(VueI18n)
 Vue.use(VueRouter)
 Vue.use(BootstrapVue)
+Vue.use(VuePageTransition)
 Vue.use(moment)
 Vue.use(axios)
 

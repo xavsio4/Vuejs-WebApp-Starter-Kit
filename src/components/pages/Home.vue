@@ -3,9 +3,9 @@
    
     <h1>{{ msg }}</h1>
     <h2>{{ $t('welcome') }}</h2>
-    <img alt="Vue logo" src="./../assets/img/logo.png">
-    locale used {{ $i18n.locale }}
-  
+    <p>This is the application {{ appName }}</p>
+    <img alt="Vue logo" src="./../../assets/img/logo.png">
+    
   </div>
 </template>
 
@@ -14,6 +14,14 @@ export default {
   name: 'Home',
   props: {
     msg: String
+  },
+  data() {
+    return {
+      appName: '',
+    }
+  },
+  mounted() {
+    this.appName = process.env.VUE_APP_NAME
   }
 }
 </script>

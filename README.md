@@ -16,8 +16,19 @@ includes
 - moment
 - i18n
 - Bootstrap-Vue
+- Vue-PageTransition
 
 I18n is configured as well as Router. You'll find also examples with axios and vuex in order to just modify the base url you are using. 
+
+## environment configuration
+There are 2 .env files in the root of the app.
+The en.local will be ignored by GIT.
+
+To access an env variable use
+```
+process.env.VUE_APP_NAME
+```
+An example can be found in the home component.
 
 ## Added files and folders for this project
 

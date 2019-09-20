@@ -1,10 +1,18 @@
 <template>
   <div id="app">
-      <navigation-bar></navigation-bar>
-    <div class="container">  
-      <router-view></router-view>
+    <navigation-bar></navigation-bar>
+    <div class="container">
+      <vue-page-transition name="fade-in-right">
+        <router-view />
+      </vue-page-transition>
     </div>
-  </div><!-- //App -->
+    <footer class="section">
+      <div class="container">
+        <p class="text-muted text-sm">Locale used {{ $i18n.locale }}</p>&copy; MyApp
+      </div>
+    </footer>
+  </div>
+  <!-- //App -->
 </template>
 
 <script>
@@ -14,12 +22,14 @@ export default {
   name: "app",
   components: {
     NavigationBar
+  },
+  mounted() {
+    //any code here
   }
 };
 </script>
 
 <style>
 #app {
-  
 }
 </style>
