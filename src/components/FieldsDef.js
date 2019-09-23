@@ -6,7 +6,7 @@ export default [
   },
   {
     name: 'name',
-    title: '<span class="orange glyphicon glyphicon-user"></span> Full Name',
+    title: '<span class="fa fa-user"></span> Full Name',
     sortField: 'name'
   },
   {
