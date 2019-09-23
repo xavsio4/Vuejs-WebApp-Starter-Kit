@@ -1,29 +1,45 @@
 <template>
   <div class="home">
-   
-    <h1>{{ msg }}</h1>
-    <h2>{{ $t('welcome') }}</h2>
-    <p>This is the application {{ appName }}</p>
-    <img alt="Vue logo" src="./../../assets/img/logo.png">
-    
+    <img alt="Vue logo" src="./../../assets/img/logo.png" height="100" />
+
+    <section
+      class="u-py-100 u-h-100vh u-flex-center"
+      data-dark-overlay="6"
+      style="background:url(../assets/img/bkg/hero.jpg) no-repeat; background-size: cover; background-position: top center;"
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col-12 u-mt-80 text-center">
+            <h1 class="display-4 u-fw-600 text-white u-mb-40">{{ $t('welcome') }}</h1>
+            <p class="u-fs-22 text-white u-lh-1_8 u-mb-40">{{ appName }}</p>
+            <a href class="btn btn btn-rounded btn-green px-md-5">{{ msg }}</a>
+            <a href class="btn btn btn-rounded btn-white ml-3 px-md-5">Learn more</a>
+          </div>
+          <!-- END col-lg-6-->
+        </div>
+        <!-- END row-->
+      </div>
+      <!-- END container-->
+    </section>
+    <!-- END intro-hero-->
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Home',
+  name: "Home",
   props: {
     msg: String
   },
   data() {
     return {
-      appName: '',
-    }
+      appName: ""
+    };
   },
   mounted() {
-    this.appName = process.env.VUE_APP_NAME
+    this.appName = process.env.VUE_APP_NAME;
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

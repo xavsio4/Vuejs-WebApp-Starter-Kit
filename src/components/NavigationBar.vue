@@ -1,8 +1,8 @@
 <template>
     <header>   
     <b-navbar toggleable="lg" type="dark" variant="info">
-      <b-navbar-brand href="/"> 
-        <b-img src="../assets/img/logo.png" fluid alt="Responsive image">
+      <b-navbar-brand to="/"> 
+        <b-img src="../assets/img/logovue.png" srcset="../assets/img/logovue@2x.png" fluid alt="Responsive image">
         </b-img>
       </b-navbar-brand>
 
@@ -11,6 +11,7 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item to="/about">About</b-nav-item>
+          <b-nav-item to="/tablelist">Table List</b-nav-item>
           <b-nav-item href="#" disabled>Disabled</b-nav-item>
         </b-navbar-nav>
 

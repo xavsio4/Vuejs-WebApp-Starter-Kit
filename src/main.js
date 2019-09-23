@@ -14,11 +14,14 @@ import moment from 'vue-moment'
 import VuePageTransition from 'vue-page-transition'
 
 
+
 /*** 
 * Add here additional css/skins that you have to put in the assets folder
 */
-import './assets/css/themea/bundle.css'
-import './assets/css/themea/style.css'
+import './assets/css/bundle.css'
+import './assets/css/style.css'
+import './assets/vendor/font-awesome/css/font-awesome.min.css'
+
 
 /**
  * Import routes difined in the route.js file
@@ -59,7 +62,7 @@ var i18n = new VueI18n({
 /**
  * Initiate vue-router
  */
-const router = new VueRouter({ routes });
+const router = new VueRouter({ routes, mode: 'history' });
 
 /**
  * Instantiate the Vue App

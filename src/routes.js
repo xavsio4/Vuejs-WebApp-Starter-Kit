@@ -1,5 +1,6 @@
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
+import TableList from "./components/TableList";
 //import JournalView from "./components/journalview";
 //import JournalForm from "./components/journalform";
 
@@ -17,6 +18,7 @@ const routes = [
       ]// /metatag about
     }
   }, //about
+  { path: "/tablelist", component: TableList, meta: {title: 'Table List'} },
   //{ path: "/journalview", component: JournalView, name: "View Journal" },
   //{ path: "/journalform", component: JournalForm, name: "Add Journal" }
 ];
