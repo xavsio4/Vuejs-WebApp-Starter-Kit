@@ -10,8 +10,9 @@ import axios from 'axios'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import moment from 'vue-moment'
+import moment from "vue-moment"
 import VuePageTransition from 'vue-page-transition'
+import modal from 'vue-js-modal'
 
 
 
@@ -46,6 +47,9 @@ Vue.use(BootstrapVue)
 Vue.use(VuePageTransition)
 Vue.use(moment)
 Vue.use(axios)
+//Vue.use(modal,{componentName: "vsk-modal"})
+Vue.use(modal)
+
 
 
 /**

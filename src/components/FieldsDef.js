@@ -13,7 +13,13 @@ export default [
     name: 'email',
     sortField: 'email'
   },
-  'birthdate', 
+  {
+    name: 'birthdate',
+    title: 'Annif',
+    titleClass: 'center aligned',
+    dataClass: 'center aligned',
+    callback: 'formatDate|D/MM/Y'
+  },
   'nickname',
   {
     name: 'gender',
