@@ -39,7 +39,11 @@
         ></vuetable-pagination>
       </div>
     </div>
-    <modal name="hello-world" @before-open="beforeOpen"></modal>
+    <modal name="hello-world" transition="pop-out" @before-open="beforeOpen" :scrollable="true" height="100%">
+      Finally
+      {{ title }}
+    </modal>
+    <v-dialog transition="bounce" :scrollable="true" height="100%"/>
   </section>
 </template>
 
@@ -50,7 +54,6 @@ import VuetablePaginationInfo from "vuetable-2/src/components/VuetablePagination
 import FieldsDef from "./FieldsDef.js";
 import axios from "axios";
 import moment from "vue-moment";
-import modal from "vue-js-modal";
 import _ from "lodash";
 
 export default {
@@ -108,6 +111,9 @@ export default {
   },
 
   methods: {
+    beforeOpen (event) {
+    console.log(event.params.foo);
+  },
     formatDate(value, fmt = "D MMM YYYY") {
       return value == null ? "" : moment(value, "YYYY-MM-DD").format(fmt);
     },
@@ -156,11 +162,34 @@ export default {
       };
     },
     onActionClicked(action, data) {
-      console.log("slot actions: on-click", data.name, action);
+      //console.log("slot actions: on-click", data.name, action);
       //if (action === "view-item")
       // {
-      this.$modal.show("hello-world", { title: "Viewing "+data.name });
-      // }
+      this.$modal.show('dialog', {
+        title: data.name+'\'s profile',
+        text: '<strong>Email</strong> '+data.email+'<br/>Salary ',
+        buttons: [
+          {
+            title: 'C💩NCEL',
+            handler: () => {
+              this.$modal.hide('dialog')
+            }
+          },
+          {
+            title: 'LIKE',
+            default: true,
+            handler: () => {
+              alert('LIKE LIKE LIKE')
+            }
+          },
+          {
+            title: 'REPOST',
+            handler: () => {
+              alert('REPOST REPOST REPOST')
+            }
+          }
+        ]
+      })
     }
   }
 };

@@ -21,6 +21,7 @@ import modal from 'vue-js-modal'
 */
 import './assets/css/bundle.css'
 import './assets/css/style.css'
+import './assets/css/animate.css'
 import './assets/vendor/font-awesome/css/font-awesome.min.css'
 
 
@@ -47,8 +48,14 @@ Vue.use(BootstrapVue)
 Vue.use(VuePageTransition)
 Vue.use(moment)
 Vue.use(axios)
-//Vue.use(modal,{componentName: "vsk-modal"})
-Vue.use(modal)
+Vue.use(modal, {
+  //componentName: "vsk-modal"}
+  dialog: true,
+  dynamic: true,
+  dynamicDefaults: {
+    foo: 'foo'
+  }
+})
 
 
 
