@@ -1,0 +1,11 @@
+/*
+** custom.css
+** This is an additional css for any use
+** and to avoid messing with you theme css
+** 
+*/
+
+.pagination .page-link
+{
+    cursor: pointer;
+}

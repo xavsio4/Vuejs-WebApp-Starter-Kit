@@ -23,6 +23,7 @@ import './assets/css/bundle.css'
 import './assets/css/style.css'
 import './assets/css/animate.css'
 import './assets/vendor/font-awesome/css/font-awesome.min.css'
+import './assets/css/custom.css'
 
 
 /**
