@@ -5,27 +5,17 @@ export default [
     name: VuetableFieldHandle
   },
   {
-    name: 'name',
-    title: '<span class="fa fa-user"></span> Full Name',
-    sortField: 'name'
+    name: 'id',
+    title: 'Id',
   },
   {
-    name: 'email',
-    sortField: 'email'
+    name: 'title',
   },
   {
-    name: 'birthdate',
-    title: 'Annif',
+    name: 'content',
+    title: 'Content',
     titleClass: 'center aligned',
     dataClass: 'center aligned',
-    callback: 'formatDate|D/MM/Y'
-  },
-  'nickname',
-  {
-    name: 'gender',
-    formatter: (value) => {
-      return value === 'M' ? 'Male' : 'Female'
-    }
   },
   'actions'
 ]

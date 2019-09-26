@@ -32,6 +32,7 @@ This starter includes
 - Vue-PageTransition : for fancy navigation
 - Vue js modal : well...for dialogs and so on
 - vuetable 2 : for CRUD sake (like the gridview in Yii2)
+- vue-iziToast : for pushing messages to the client
 
 I18n is configured as well as Router. You'll find also examples with axios and vuex in order to just modify the base url you are using. 
 

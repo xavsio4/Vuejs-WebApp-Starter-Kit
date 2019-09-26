@@ -6,22 +6,20 @@
         <router-view />
       </vue-page-transition>
     </div>
-    <footer class="section">
-      <div class="container">
-        <p class="text-muted text-sm">Locale used {{ $i18n.locale }}</p>&copy; MyApp
-      </div>
-    </footer>
+    <footer-element></footer-element>
   </div>
   <!-- //App -->
 </template>
 
 <script>
 import NavigationBar from "./components/NavigationBar";
+import FooterElement from "./components/FooterOneElement";
 
 export default {
   name: "app",
   components: {
-    NavigationBar
+    NavigationBar,
+    FooterElement
   },
   mounted() {
     //any code here

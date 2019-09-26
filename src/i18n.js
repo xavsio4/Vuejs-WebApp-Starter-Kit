@@ -4,6 +4,7 @@
  * Holds the default configuration for translations
  * of the UI
  */
+
 import en from "./locales/en.json";
 import es from "./locales/es.json";
 import fr from "./locales/fr.json";

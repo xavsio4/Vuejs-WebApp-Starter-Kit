@@ -13,6 +13,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import moment from "vue-moment"
 import VuePageTransition from 'vue-page-transition'
 import modal from 'vue-js-modal'
+import VueIziToast from 'vue-izitoast'
+import 'izitoast/dist/css/iziToast.min.css'
 
 
 
@@ -23,7 +25,7 @@ import './assets/css/bundle.css'
 import './assets/css/style.css'
 import './assets/css/animate.css'
 import './assets/vendor/font-awesome/css/font-awesome.min.css'
-import './assets/css/custom.css'
+import './assets/css/custom.css' //additional file for project wide css rules
 
 
 /**
@@ -57,6 +59,7 @@ Vue.use(modal, {
     foo: 'foo'
   }
 })
+Vue.use(VueIziToast)
 
 
 

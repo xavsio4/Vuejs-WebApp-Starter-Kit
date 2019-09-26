@@ -6,10 +6,27 @@
  * rest api you reach.
 */
 
-import Api from "@/services/Api";
+import Api from "./api";
 
 export default {
-  getJournalEntry(_params) {
-    return Api().get("/journal/" + 1);
+  getJournalEntry(id) {
+    return Api().get("/journal/" + id);
+  },
+
+  deleteJournalEntry(id) {
+    return Api().delete('/journal/'+id);
+  },
+
+  updateJournalEntry(id) {
+    return Api().put('/journal/'+id);
+  },
+
+  addJournalEntry(_params) {
+    return Api().post("/journal/create");
+  },
+
+  getJournalList() {
+    return Api().get("/journal/");
   }
+
 };

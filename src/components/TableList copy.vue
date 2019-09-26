@@ -2,11 +2,6 @@
   <section>
     <div class="container">
       <h1>Table List</h1>
-      <div class="mt-3">
-        <b-button-group size="sm">
-          <b-button @click="$modal.show('add-item-modal')" variant="primary">Add an Item</b-button>
-        </b-button-group>
-      </div>
       <vuetable-pagination-info
         ref="paginationInfo"
         :info-template="'Affichage de {from} à {to} sur {total} utilisteurs'"
@@ -31,7 +26,7 @@
           <button class="btn btn-sm" @click="onActionClicked('edit-item', props.rowData)">
             <i class="fa fa-pencil"></i>
           </button>
-          <button class="btn btn-sm" @click="onActionDelete('delete-item', props.rowData)">
+          <button class="btn btn-sm" @click="onActionClicked('delete-item', props.rowData)">
             <i class="fa fa-trash"></i>
           </button>
         </div>
@@ -44,49 +39,29 @@
         ></vuetable-pagination>
       </div>
     </div>
-    <!-- Modal example 1 -->
-    <modal
-      name="hello-world"
-      transition="pop-out"
-      @before-open="beforeOpen"
-      :scrollable="true"
-      height="100%"
-    >
+    <modal name="hello-world" transition="pop-out" @before-open="beforeOpen" :scrollable="true" height="100%">
       Finally
       {{ title }}
     </modal>
-    <!-- special integration of external modal definition -->
-    <add-item-modal/>
-    <!-- dialog modal -->
-    <v-dialog transition="bounce" :scrollable="true" height="auto" />
+    <v-dialog transition="bounce" :scrollable="true" height="100%"/>
   </section>
 </template>
 
 <script>
-// import the services file that holds the API calls and that includes axios
-import JournalService from "./../services/JournalService";
-
 import Vuetable from "vuetable-2";
 import VuetablePagination from "vuetable-2/src/components/VuetablePagination";
 import VuetablePaginationInfo from "vuetable-2/src/components/VuetablePaginationInfo";
 import FieldsDef from "./FieldsDef.js";
+import axios from "axios";
 import moment from "vue-moment";
 import _ from "lodash";
-
-import { mapGetters, mapActions } from 'vuex'
-
-/**
- * Import specific modals for edition
- */
-import AddItemModal from "./modals/AddItemModal";
 
 export default {
   name: "app",
   components: {
     Vuetable,
     VuetablePagination,
-    VuetablePaginationInfo,
-    AddItemModal
+    VuetablePaginationInfo
   },
   data() {
     return {
@@ -94,13 +69,12 @@ export default {
       perPage: 3,
       sortOrder: [
         {
-          field: "id",
-          sortField: "id",
+          field: "email",
+          sortField: "email",
           direction: "asc"
         }
       ],
-      jList: [],
-      
+      data: [],
       paginationInfoCss: {
         infoClass: "pull-right text-muted"
       },
@@ -125,50 +99,44 @@ export default {
   },
 
   watch: {
-    jList(newVal, oldVal) {
+    data(newVal, oldVal) {
       this.$refs.vuetable.refresh();
     }
   },
 
   mounted() {
-    this.getJournalList();
+    axios.get("https://vuetable.ratiw.net/api/users").then(response => {
+      this.data = response.data.data;
+    });
   },
 
   methods: {
-    async getJournalList() {
-      const response = await JournalService.getJournalList();
-      this.jList = response.data;
-    },
-
-    beforeOpen(event) {
-      console.log(event.params.foo);
-    },
-
+    beforeOpen (event) {
+    console.log(event.params.foo);
+  },
     formatDate(value, fmt = "D MMM YYYY") {
       return value == null ? "" : moment(value, "YYYY-MM-DD").format(fmt);
     },
-
+    allcap(value) {
+      return value.toUpperCase();
+    },
     mshow() {
       this.$modal.show("hello-world");
     },
-
     mhide() {
       this.$modal.hide("hello-world");
     },
-
     onPaginationData(paginationData) {
       this.$refs.pagination.setPaginationData(paginationData);
       this.$refs.paginationInfo.setPaginationData(paginationData);
     },
-
     onChangePage(page) {
       this.$refs.vuetable.changePage(page);
     },
-
     dataManager(sortOrder, pagination) {
-      if (this.jList.length < 1) return;
+      if (this.data.length < 1) return;
 
-      let local = this.jList;
+      let local = this.data;
 
       // sortOrder can be empty, so we have to check for that as well
       if (sortOrder.length > 0) {
@@ -193,32 +161,36 @@ export default {
         data: _.slice(local, from, to)
       };
     },
-
-    /* CRUD actions */
-
-    onActionDelete(action, data) {
+    onActionClicked(action, data) {
       //console.log("slot actions: on-click", data.name, action);
-      this.$modal.show("dialog", {
-        title: "Do you really want to delete this entry ?",
-        text: data.id,
+      //if (action === "view-item")
+      // {
+      this.$modal.show('dialog', {
+        title: data.name+'\'s profile',
+        text: '<strong>Email</strong> '+data.email+'<br/>Salary ',
         buttons: [
           {
-            title: "Cancel",
+            title: 'C💩NCEL',
             handler: () => {
-              this.$modal.hide("dialog");
+              this.$modal.hide('dialog')
             }
           },
           {
-            title: "Delete",
+            title: 'LIKE',
             default: true,
-            handler: (data) => {
-              const response = JournalService.deleteJournalEntry(3);
-
+            handler: () => {
+              alert('LIKE LIKE LIKE')
             }
           },
+          {
+            title: 'REPOST',
+            handler: () => {
+              alert('REPOST REPOST REPOST')
+            }
+          }
         ]
-      });
-    } // /actionDelate
+      })
+    }
   }
 };
 </script>
