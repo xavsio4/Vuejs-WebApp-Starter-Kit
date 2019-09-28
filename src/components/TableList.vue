@@ -14,6 +14,7 @@
       ></vuetable-pagination-info>
       <vuetable
         ref="vuetable"
+        rowClass="vuetable-detail-row"
         :api-mode="false"
         :fields="fields"
         :per-page="perPage"
@@ -31,7 +32,7 @@
           <button class="btn btn-sm" @click="onActionClicked('edit-item', props.rowData)">
             <i class="fa fa-pencil"></i>
           </button>
-          <button class="btn btn-sm" @click="onActionDelete('delete-item', props.rowData)">
+          <button class="btn btn-sm" @click="onActionDelete('delete-item', props.rowData, props.rowIndex)">
             <i class="fa fa-trash"></i>
           </button>
         </div>
@@ -81,7 +82,6 @@ import { mapGetters, mapActions } from 'vuex'
 import AddItemModal from "./modals/AddItemModal";
 
 export default {
-  name: "app",
   components: {
     Vuetable,
     VuetablePagination,
@@ -196,23 +196,26 @@ export default {
 
     /* CRUD actions */
 
-    onActionDelete(action, data) {
+    onActionDelete(action, data, rowIndex) {
       //console.log("slot actions: on-click", data.name, action);
       this.$modal.show("dialog", {
-        title: "Do you really want to delete this entry ?",
+        title: "Do you really want to delete this entry ?"+rowIndex,
         text: data.id,
         buttons: [
           {
             title: "Cancel",
             handler: () => {
               this.$modal.hide("dialog");
+              //console.log(data);
             }
           },
           {
             title: "Delete",
             default: true,
-            handler: (data) => {
-              const response = JournalService.deleteJournalEntry(3);
+            handler: () => {
+             // JournalService.deleteJournalEntry(data.id);
+              this.jList.splice(rowIndex, 1);
+              this.$modal.hide("dialog");
 
             }
           },
@@ -223,5 +226,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.list-enter-active, .list-leave-active {
+  transition: all 1s;
+}
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
+}
 </style>

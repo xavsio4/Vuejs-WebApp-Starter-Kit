@@ -16,6 +16,12 @@ import modal from 'vue-js-modal'
 import VueIziToast from 'vue-izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
 
+/**
+* alternate buefy 
+*/
+/*import Buefy from 'buefy'
+import 'buefy/dist/buefy.css'
+Vue.use(Buefy)*/
 
 
 /*** 
@@ -78,6 +84,7 @@ var i18n = new VueI18n({
  * Initiate vue-router
  */
 const router = new VueRouter({ routes, mode: 'history' });
+router.replace('/');
 
 /**
  * Instantiate the Vue App
@@ -85,5 +92,6 @@ const router = new VueRouter({ routes, mode: 'history' });
 new Vue({
   i18n,
   router,
+  VueIziToast,
   render: h => h(App),
 }).$mount('#app')

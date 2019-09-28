@@ -17,6 +17,7 @@
           <b-navbar-nav>
             <b-nav-item to="/about">About</b-nav-item>
             <b-nav-item to="/tablelist">Table List</b-nav-item>
+            <b-nav-item to="/tablelist2">Table List2</b-nav-item>
             <b-nav-item to="/dashboard">Dashboard</b-nav-item>
             <b-nav-item href="#" disabled>Disabled</b-nav-item>
           </b-navbar-nav>
@@ -37,13 +38,15 @@
               >{{ lang.title }}</b-dropdown-item>
             </b-nav-item-dropdown>
 
-            <b-nav-item-dropdown right>
+            <b-nav-item-dropdown right text="User">
               <!-- Using 'button-content' slot -->
               <template v-slot:button-content>
                 <em>User</em>
               </template>
-              <b-dropdown-item href="#">Profile</b-dropdown-item>
-              <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+              <b-dropdown-item v-if="authenticated" to="/auth/logout" v-on:click.native="logout()" replace>Logout</b-dropdown-item>
+              <b-dropdown-item v-if="authenticated" to="/auth/profile">Profile</b-dropdown-item>
+              <b-dropdown-item v-if="!authenticated" to="/auth/register">Register</b-dropdown-item>
+              <b-dropdown-item v-if="!authenticated" to="/auth/login">Login</b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>
         </b-collapse>
@@ -57,6 +60,7 @@ export default {
   components: {},
   data() {
     return {
+      authenticated: false,
       languages: [
         { flag: "us", code: "en", title: "English" },
         { flag: "es", code: "es", title: "Español" },
@@ -64,7 +68,20 @@ export default {
       ]
       // publicPath: process.env.BASE_URL
     };
-  } //data
+  }, //data
+  mounted() {
+            if(!this.authenticated) {
+                this.$router.replace({ name: "login" });
+            }
+        }, // /mounted
+  methods: {
+      setAuthenticated(status) {
+          this.authenticated = status;
+      },
+      logout() {
+          this.authenticated = false;
+      }
+  } // /methods
 };
 </script>
 <style scoped>

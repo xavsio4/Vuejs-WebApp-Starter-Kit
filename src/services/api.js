@@ -28,7 +28,7 @@ axiosAPI.interceptors.response.use(
   function (error) {
     // Do something with response error
     if (error.response.status === 401) {
-      console.log('unauthorized, logging out ...');
+      Vue.prototype.toast.error('You are not authorized to perform this operation','Aouch !');
       auth.logout();
       router.replace('/auth/login');
     }
@@ -36,12 +36,12 @@ axiosAPI.interceptors.response.use(
     if (error.response.status === 403) {
       console.log('403: unauthorized, You need to log in');
       Vue.prototype.toast.error('You are not authorized to perform this operation','Aouch !');
-      //router.replace('/auth/login');
+      router.replace('/auth/login');
     }
 
     if (error.response.status === 500) {
       console.log('500: The service you are accessing seems to have a problem');
-      //router.replace('/auth/login');
+      router.replace('/auth/login');
     }
 
     console.log('init')

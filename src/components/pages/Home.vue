@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="./../../assets/img/logo.png" height="100" />
+    
 
     <section
       class="u-py-100 u-h-100vh u-flex-center"
@@ -10,6 +10,7 @@
       <div class="container">
         <div class="row">
           <div class="col-12 u-mt-80 text-center">
+            <span class="text-center"><img alt="Vue logo" src="./../../assets/img/logo.png" height="100" /></span>
             <h1 class="display-4 u-fw-600 text-white u-mb-40">{{ $t('welcome') }}</h1>
             <p class="u-fs-22 text-white u-lh-1_8 u-mb-40">{{ appName }}</p>
             <a href class="btn btn btn-rounded btn-green px-md-5">{{ msg }}</a>
@@ -27,7 +28,6 @@
 
 <script>
 export default {
-  name: "Home",
   props: {
     msg: String
   },

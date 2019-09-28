@@ -12,7 +12,7 @@
   </section>
 </template>
 <script>
-import InfoTicket from "./widgets/Info-Ticket";
+import InfoTicket from "./widgets/InfoTicket";
 
 export default {
   name: "dashboard",
