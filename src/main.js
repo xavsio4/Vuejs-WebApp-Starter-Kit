@@ -38,6 +38,7 @@ import './assets/css/custom.css' //additional file for project wide css rules
  * Import routes difined in the route.js file
  */
 import routes from "./routes"
+import {scrollBehavior} from "./routes"
 
 /**
  * Import i18n.js parameters
@@ -83,7 +84,13 @@ var i18n = new VueI18n({
 /**
  * Initiate vue-router
  */
-const router = new VueRouter({ routes, mode: 'history' });
+const router = new VueRouter({ 
+  routes, 
+  mode: 'history',
+  base: __dirname,
+  scrollBehavior, 
+});
+
 router.replace('/');
 
 /**

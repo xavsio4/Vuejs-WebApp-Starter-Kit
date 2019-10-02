@@ -10,6 +10,8 @@ export default [
   },
   {
     name: 'title',
+    title: 'Titre',
+    sortField: 'title'
   },
   {
     name: 'content',

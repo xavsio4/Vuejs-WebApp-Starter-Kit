@@ -1,5 +1,6 @@
 <template>
   <section>
+    <div class="loader">LOADING</div>
     <div class="container">
       <h1>Table List</h1>
       <div class="mt-3">
@@ -12,21 +13,25 @@
         :info-template="'Affichage de {from} à {to} sur {total} utilisteurs'"
         :css="paginationInfoCss"
       ></vuetable-pagination-info>
+      
       <vuetable
         ref="vuetable"
+        :fields="fields"
         rowClass="vuetable-detail-row"
         :api-mode="false"
-        :fields="fields"
+        detail-row-component="detail-row"
         :per-page="perPage"
+        detail-row-transition="slide-fade"
         :multi-sort="true"
         multi-sort-key="ctrl"
         :sort-order="sortOrder"
         :data-manager="dataManager"
         pagination-path="pagination"
         @vuetable:pagination-data="onPaginationData"
+        wrapper-class="vuetable-wrapper"
       >
         <div slot="actions" slot-scope="props">
-          <button class="btn btn-sm" @click="onActionClicked('view-item', props.rowData)">
+          <button class="btn btn-sm" @click="showDetailRow(props.rowData)">
             <i class="fa fa-eye"></i>
           </button>
           <button class="btn btn-sm" @click="onActionClicked('edit-item', props.rowData)">
@@ -71,6 +76,7 @@ import Vuetable from "vuetable-2";
 import VuetablePagination from "vuetable-2/src/components/VuetablePagination";
 import VuetablePaginationInfo from "vuetable-2/src/components/VuetablePaginationInfo";
 import FieldsDef from "./FieldsDef.js";
+import DetailRow from './DetailRow';
 import moment from "vue-moment";
 import _ from "lodash";
 
@@ -86,7 +92,8 @@ export default {
     Vuetable,
     VuetablePagination,
     VuetablePaginationInfo,
-    AddItemModal
+    AddItemModal,
+    DetailRow,
   },
   data() {
     return {
@@ -155,6 +162,27 @@ export default {
     mhide() {
       this.$modal.hide("hello-world");
     },
+
+    showDetailRow(value) {
+                var icon = this.$refs.vuetable.isVisibleDetailRow(value) ? 'down' : 'right'
+                return [
+                    '<a class="show-detail-row">',
+                        '<i class="chevron circle ' + icon + ' icon"></i>',
+                    '</a>'
+                ].join('')
+            },
+            setFilter: function() {
+                this.moreParams = [
+                    'filter=' + this.searchFor
+                ]
+                this.$nextTick(function() {
+                    this.$broadcast('vuetable:refresh')
+                })
+            },
+            resetFilter: function() {
+                this.searchFor = ''
+                this.setFilter()
+            },
 
     onPaginationData(paginationData) {
       this.$refs.pagination.setPaginationData(paginationData);
@@ -227,11 +255,45 @@ export default {
 </script>
 
 <style scoped>
-.list-enter-active, .list-leave-active {
-  transition: all 1s;
+
+.loader {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s linear;
+    background: url('loader.gif') no-repeat bottom center;
+    width: 200px;
+    height: 30px;
+    font-size: 1em;
+    text-align: center;
+    margin-left: -100px;
+    letter-spacing: 4px;
+    color: #3E97F6;
+    position: absolute;
+    top: 160px;
+    left: 50%;
 }
-.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+.loading .loader {
+    visibility: visible;
+    opacity: 1;
+    z-index: 100;
+}
+.loading .vuetable{
+    opacity:0.3;
+    filter: alpha(opacity=30); /* IE8 and earlier */
+}
+
+/* Enter and leave animations can use different */
+/* durations and timing functions.              */
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+tr.vuetable-detail-row {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to, .slide-fade-move  
+{
+  transform: translateX(10px);
   opacity: 0;
-  transform: translateY(30px);
 }
+
 </style>
