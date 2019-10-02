@@ -15,6 +15,7 @@ import VuePageTransition from 'vue-page-transition'
 import modal from 'vue-js-modal'
 import VueIziToast from 'vue-izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
+import ckeditor from '@ckeditor/ckeditor5-vue'
 
 /**
 * alternate buefy 
@@ -67,7 +68,7 @@ Vue.use(modal, {
   }
 })
 Vue.use(VueIziToast)
-
+Vue.use(ckeditor)
 
 
 /**

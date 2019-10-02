@@ -21,6 +21,7 @@
             <b-nav-item to="/tablelist3">Table List3</b-nav-item>
 
             <b-nav-item to="/infinity">infinity</b-nav-item>
+            <b-nav-item to="/formadd">formadd</b-nav-item>
             <b-nav-item to="/dashboard">Dashboard</b-nav-item>
             <b-nav-item href="#" disabled>Disabled</b-nav-item>
           </b-navbar-nav>

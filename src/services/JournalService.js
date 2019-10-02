@@ -13,6 +13,14 @@ export default {
     return Api().get("/journal/" + id);
   },
 
+  getSearchJournal(search) {
+    return Api().get("/journal/search" + search);
+  },
+
+  getSearchJournalcontent(search) {
+    return Api().get("/journal/searchcontent?s=" + search);
+  },
+
   deleteJournalEntry(id) {
     return Api().delete('/journal/'+id);
   },

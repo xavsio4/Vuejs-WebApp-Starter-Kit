@@ -8,6 +8,8 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^12.4.0",
+    "@ckeditor/ckeditor5-vue": "^1.0.0",
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.2",
@@ -16,6 +18,8 @@
     "core-js": "^2.6.5",
     "lodash": "^4.17.15",
     "vue": "^2.6.10",
+    "vue-autocomplete": "0.0.2",
+    "vue-bootstrap-typeahead": "^0.2.6",
     "vue-bootstrap4-table": "^1.1.11",
     "vue-chartjs": "^3.4.2",
     "vue-i18n": "^8.14.1",

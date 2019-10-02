@@ -1,7 +1,7 @@
 <template>
   <div class="list-item">
     <div class="index">
-      <b-card bg-variant="dark" text-variant="white" :title="data.title">
+      <b-card bg-variant="dark" text-variant="white" :title="data.id+data.title">
         <b-card-sub-title class="mb-2">{{data.created_at | formattedTime}}</b-card-sub-title>
         <b-card-text>{{data.content}}</b-card-text>
         <b-button size="sm" href="#" variant="primary">Go somewhere</b-button>

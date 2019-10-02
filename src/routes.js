@@ -5,6 +5,7 @@ import TableList from "./components/TableList";
 import TableList2 from "./components/TableList2";
 import TableList3 from "./components/TableList3";
 import infinity from "./components/infinity";
+import formadd from "./components/FormAdd";
 
 /* Auth */
 import login from "./components/auth/login";
@@ -76,6 +77,7 @@ const routes = [
   { path: "/tablelist2", component: TableList2, meta: {title: 'Table List'} },
   { path: "/tablelist3", component: TableList3, meta: {title: 'Table List3'} },
   { path: "/infinity", component: infinity, meta: {title: 'infinity'} },
+  { path: "/formadd", component: formadd, meta: {title: 'formadd'} },
   { path: "/auth/login", component: login, meta: {title: 'Login'} },
   { path: "/auth/register", component: register, meta: {title: 'Register'} },
   { path: "/auth/profile", component: profile, meta: {title: 'Profile'} },
