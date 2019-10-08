@@ -23,7 +23,6 @@
             <b-nav-item to="/infinity">infinity</b-nav-item>
             <b-nav-item to="/formadd">formadd</b-nav-item>
             <b-nav-item to="/dashboard">Dashboard</b-nav-item>
-            <b-nav-item href="#" disabled>Disabled</b-nav-item>
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->
@@ -47,7 +46,7 @@
               <template v-slot:button-content>
                 <em>User</em>
               </template>
-              <b-dropdown-item v-if="authenticated" to="/auth/logout" v-on:click.native="logout()" replace>Logout</b-dropdown-item>
+              <b-dropdown-item v-if="authenticated" to="/auth/logout" v-on:click.native="logout()">Logout</b-dropdown-item>
               <b-dropdown-item v-if="authenticated" to="/auth/profile">Profile</b-dropdown-item>
               <b-dropdown-item v-if="!authenticated" to="/auth/register">Register</b-dropdown-item>
               <b-dropdown-item v-if="!authenticated" to="/auth/login">Login</b-dropdown-item>
@@ -74,9 +73,9 @@ export default {
     };
   }, //data
   mounted() {
-            if(!this.authenticated) {
+           /* if(!this.authenticated) {
                 this.$router.replace({ name: "login" });
-            }
+            } */
         }, // /mounted
   methods: {
       setAuthenticated(status) {

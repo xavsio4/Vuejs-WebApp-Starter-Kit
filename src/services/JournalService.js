@@ -8,6 +8,8 @@
 
 import Api from "./api";
 
+import { TokenService } from './storage.service';
+
 export default {
   getJournalEntry(id) {
     return Api().get("/journal/" + id);

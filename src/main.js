@@ -1,11 +1,12 @@
 import Vue from 'vue'
+import router from "./routes"
+import Vuelidate from 'vuelidate'
 import App from './App.vue'
 
 /**
  * Import plugins
  */
 import VueI18n from 'vue-i18n'
-import VueRouter from 'vue-router'
 import axios from 'axios'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -16,6 +17,7 @@ import modal from 'vue-js-modal'
 import VueIziToast from 'vue-izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
 import ckeditor from '@ckeditor/ckeditor5-vue'
+
 
 /**
 * alternate buefy 
@@ -36,12 +38,6 @@ import './assets/css/custom.css' //additional file for project wide css rules
 
 
 /**
- * Import routes difined in the route.js file
- */
-import routes from "./routes"
-import {scrollBehavior} from "./routes"
-
-/**
  * Import i18n.js parameters
  */
 import { translations } from "./i18n" // import configuration part from i18n.js
@@ -54,7 +50,7 @@ Vue.config.productionTip = false
  * Add here more plugins if you need
  */
 Vue.use(VueI18n)
-Vue.use(VueRouter)
+Vue.use(router)
 Vue.use(BootstrapVue)
 Vue.use(VuePageTransition)
 Vue.use(moment)
@@ -69,6 +65,7 @@ Vue.use(modal, {
 })
 Vue.use(VueIziToast)
 Vue.use(ckeditor)
+Vue.use(Vuelidate)
 
 
 /**
@@ -82,17 +79,6 @@ var i18n = new VueI18n({
   messages
 })
 
-/**
- * Initiate vue-router
- */
-const router = new VueRouter({ 
-  routes, 
-  mode: 'history',
-  base: __dirname,
-  scrollBehavior, 
-});
-
-router.replace('/');
 
 /**
  * Instantiate the Vue App

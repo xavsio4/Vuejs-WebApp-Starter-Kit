@@ -5,7 +5,7 @@
  */
 import Vue from 'vue'
 import Vuex from 'vuex'
-import JournalService from './services/JournalService'
+import JournalService from '../services/JournalService'
 
 Vue.use(Vuex)
 

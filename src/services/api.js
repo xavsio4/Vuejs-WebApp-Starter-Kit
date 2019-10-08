@@ -6,8 +6,10 @@
  * 
  */
 
- import Vue from 'vue'
+import Vue from 'vue';
 import axios from "axios";
+import router from "./../routes";
+import { TokenService } from './storage.service';
 import toast from "./../toast";
 
 
@@ -22,6 +24,10 @@ const axiosAPI =
     },
   });
 
+  /*setHeader() {
+    axios.defaults.headers.common["Authorization"] = `Bearer ${TokenService.getToken()}`
+},*/
+
 //we add a global error interceptor on this instance
 axiosAPI.interceptors.response.use(
   function (response) { return response; },
@@ -29,7 +35,7 @@ axiosAPI.interceptors.response.use(
     // Do something with response error
     if (error.response.status === 401) {
       Vue.prototype.toast.error('You are not authorized to perform this operation','Aouch !');
-      auth.logout();
+      //localStorage.removeItem('access_token');
       router.replace('/auth/login');
     }
   

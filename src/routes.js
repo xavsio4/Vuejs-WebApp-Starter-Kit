@@ -1,3 +1,9 @@
+import Vue from 'vue'
+import path from 'path';
+const __dirname = path.resolve();
+import VueRouter from 'vue-router'
+Vue.use(VueRouter)
+
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
 import Dashboard from "./components/Dashboard";
@@ -13,7 +19,7 @@ import register from "./components/auth/register";
 import profile from "./components/auth/profile";
 import forgotPass from "./components/auth/forgotPass";
 
-export const scrollBehavior = function (to, from, savedPosition) {
+const scrollBehavior = function (to, from, savedPosition) {
   if (savedPosition) {
     // savedPosition is only available for popstate navigations.
     return savedPosition
@@ -56,7 +62,7 @@ export const scrollBehavior = function (to, from, savedPosition) {
       })
     })
   }
-}
+} //scrollBehavior
 
 const routes = [
   { path: "/", component: Home, meta: {title: 'MyApp'} },
@@ -82,6 +88,20 @@ const routes = [
   { path: "/auth/register", component: register, meta: {title: 'Register'} },
   { path: "/auth/profile", component: profile, meta: {title: 'Profile'} },
   { path: "/auth/forgotpass", component: forgotPass, meta: {title: 'Forgot Password'} },
-];
+]; //routes
 
-export default routes;
+/**
+ * Initiate vue-router
+ */
+const router = new VueRouter({ 
+  routes, 
+  mode: 'history',
+  base: __dirname,
+  scrollBehavior, 
+});
+
+router.replace('/');
+
+
+
+export default router;

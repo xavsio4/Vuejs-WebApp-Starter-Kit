@@ -4,7 +4,7 @@
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
         <div class="form-group">
           <label for="editor">Editor</label>
-          <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
+          <ckeditor tag-name="textarea" :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
           <small id="helpId" class="text-muted">Help text</small>
         </div>
       <b-form-group
@@ -67,7 +67,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
       return {
        editor: ClassicEditor,
 				editorData: '<p>Hello world!</p>',
-				editorConfig: { toolbar: [ 'heading', '|', 'bold', 'italic' ] },
+				editorConfig: {},
 				editorDisabled: false,  
         form: {
           email: '',

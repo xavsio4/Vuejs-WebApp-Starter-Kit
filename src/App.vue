@@ -19,7 +19,7 @@ export default {
   name: "app",
   components: {
     NavigationBar,
-    FooterElement
+    FooterElement,
   },
   mounted() {
     //any code here
