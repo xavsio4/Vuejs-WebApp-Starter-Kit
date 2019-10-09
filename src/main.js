@@ -1,20 +1,20 @@
 import Vue from 'vue'
+import toast from 'vue-izitoast'
 import router from "./routes"
 import Vuelidate from 'vuelidate'
+import VueI18n from 'vue-i18n'
+import axios from 'axios'
 import App from './App.vue'
 
 /**
  * Import plugins
  */
-import VueI18n from 'vue-i18n'
-import axios from 'axios'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import moment from "vue-moment"
 import VuePageTransition from 'vue-page-transition'
 import modal from 'vue-js-modal'
-import VueIziToast from 'vue-izitoast'
 import 'izitoast/dist/css/iziToast.min.css'
 import ckeditor from '@ckeditor/ckeditor5-vue'
 
@@ -49,6 +49,7 @@ Vue.config.productionTip = false
  * Declare plugin use.
  * Add here more plugins if you need
  */
+Vue.use(toast)
 Vue.use(VueI18n)
 Vue.use(router)
 Vue.use(BootstrapVue)
@@ -63,7 +64,6 @@ Vue.use(modal, {
     foo: 'foo'
   }
 })
-Vue.use(VueIziToast)
 Vue.use(ckeditor)
 Vue.use(Vuelidate)
 
@@ -86,6 +86,5 @@ var i18n = new VueI18n({
 new Vue({
   i18n,
   router,
-  VueIziToast,
   render: h => h(App),
 }).$mount('#app')

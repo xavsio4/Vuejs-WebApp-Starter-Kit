@@ -10,21 +10,23 @@
           <input
             type="text"
             v-model="identity"
+            autocomplete="off"
             id="identity"
-            class="form-control"
+            :class="['form-control ', (submitStatus === 'ERROR' && $v.identity.$invalid) ? 'is-invalid' : '']"
             aria-describedby="input-identity"
           />
-          <p variant="alert-danger" v-if="submitStatus === 'ERROR' && !$v.identity.required">Field is required</p>
+          <p class="text-danger" v-if="submitStatus === 'ERROR' && !$v.identity.required">Field is required</p>
           <br />
           <label for="password" class="grey-text">Your password</label>
           <input
             type="password"
             v-model="password"
+            autocomplete="off"
             id="password"
-            class="form-control"
+            :class="['form-control ', (submitStatus === 'ERROR' && $v.password.$invalid) ? 'is-invalid' : '']"
             aria-describedby="input-password"
           />
-          <p variant="alert-danger" v-if="submitStatus === 'ERROR' && !$v.password.required">Field is required</p>
+          <p class="text-danger" v-if="submitStatus === 'ERROR' && !$v.password.required">Field is required</p>
           <div class="text-center mt-4">
             <button
               class="btn btn-primary"
@@ -46,12 +48,13 @@
 </template>
 <script>
 import UserService from "./../../services/UserService";
+//import toast from "vue-izitoast";
 import { required, minLength } from "vuelidate/lib/validators";
 //import { validationMixin } from 'vuelidate';
 
 export default {
   conponents: {
-    // Vuelidate,
+     //toast,
   },
   data() {
     return {
@@ -67,7 +70,7 @@ export default {
   methods: {
     login: function() {
       this.$v.touch;
-      if (this.$v.$invalid) {
+      if (this.$v.$invalid) { //if form is invalid
         this.submitStatus = "ERROR";
       } else {
         this.submitStatus = "PENDING";
@@ -75,15 +78,29 @@ export default {
         let identity = this.identity;
         let password = this.password;
         this.postCredentials(identity, password);
-        setTimeout(() => {
+        /*setTimeout(() => {
           this.submitStatus = "OK";
-        }, 500);
+        }, 500);*/
       }
     },
     postCredentials(identity, password) {
-      let response = UserService.login(identity, password);
-      console.log(response);
-      this.error = "Bad Request";
+      UserService.login(identity, password)
+      .then((response) => {
+        console.log(response.data);
+        this.submitStatus = "OK";
+        if (response.data.authorizationToken && response.data.userId) {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+           localStorage.setItem('authorizationToken', JSON.stringify(response.data.authorizationToken));
+           localStorage.setItem('user_id', JSON.stringify(response.data.userId));
+           this.$router.push('/dashboard');
+        }
+        
+        })
+      .catch((error) => {
+        this.submitStatus = "OK";
+        this.toast.error(error.response.data.message, 'Please, Check your credentials again.');
+        });
+      
     }
   }, //methods
   validations: {

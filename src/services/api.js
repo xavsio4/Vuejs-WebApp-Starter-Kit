@@ -29,7 +29,7 @@ const axiosAPI =
 },*/
 
 //we add a global error interceptor on this instance
-axiosAPI.interceptors.response.use(
+/*axiosAPI.interceptors.response.use(
   function (response) { return response; },
   function (error) {
     // Do something with response error
@@ -45,15 +45,22 @@ axiosAPI.interceptors.response.use(
       router.replace('/auth/login');
     }
 
+    if (error.response.status === 400) {
+      //console.log('400: Wrong parameters');
+      //console.log(response);
+      Vue.prototype.toast.error(error.response.data.message,'Aouch !');
+      //router.replace('/auth/login');
+    }
+
     if (error.response.status === 500) {
       console.log('500: The service you are accessing seems to have a problem');
       router.replace('/auth/login');
     }
 
-    console.log('init')
+    console.log(error.response);
     return Promise.reject(error.response);
   },
-);
+);*/
 
 //let's roll
 export default () => {

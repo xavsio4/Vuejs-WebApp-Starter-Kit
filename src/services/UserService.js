@@ -32,7 +32,8 @@ export default {
         };
         let data = JSON.stringify({ identity, password });
     
-        const response =  Api().post("/user/login", data ,requestOptions);
+        return Api().post("/user/login", data ,requestOptions)
+        
         
         //const user =  this.handleResponse(response);
         // login successful if there's a jwt token in the response
@@ -40,7 +41,6 @@ export default {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
            // localStorage.setItem('authorizationToken', JSON.stringify(user.authorizationToken));
        // }
-        return response;    
     },
     
      logout() {

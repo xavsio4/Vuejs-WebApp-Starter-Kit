@@ -66,7 +66,7 @@ const scrollBehavior = function (to, from, savedPosition) {
 
 const routes = [
   { path: "/", component: Home, meta: {title: 'MyApp'} },
-  { path: "/dashboard", component: Dashboard, meta: {title: 'Dashboard'} },
+  { path: "/dashboard", component: Dashboard, name: 'Dashboard' ,meta: {title: 'Dashboard'} },
   {
     path: "/about", component: About, meta: {
       title: 'About',
@@ -80,7 +80,7 @@ const routes = [
     }
   }, //about
   { path: "/tablelist", component: TableList, meta: {title: 'Table List'} },
-  { path: "/tablelist2", component: TableList2, meta: {title: 'Table List'} },
+  { path: "/tablelist2", component: TableList2, meta: {title: 'Table List2'} },
   { path: "/tablelist3", component: TableList3, meta: {title: 'Table List3'} },
   { path: "/infinity", component: infinity, meta: {title: 'infinity'} },
   { path: "/formadd", component: formadd, meta: {title: 'formadd'} },
