@@ -16,7 +16,7 @@
     "buefy": "^0.8.4",
     "chart.js": "^2.8.0",
     "core-js": "^2.6.5",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "vue": "^2.6.10",
     "vue-autocomplete": "0.0.2",
     "vue-bootstrap-typeahead": "^0.2.6",
